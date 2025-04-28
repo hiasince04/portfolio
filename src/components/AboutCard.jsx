@@ -33,8 +33,8 @@ function AboutCard() {
                     writingMode: 'vertical-rl',
                     textOrientation: 'mixed',
                     fontSize: '28px',
-                    marginRight: '40px', // 오른쪽 공간 벌리기
-                    alignSelf: 'flex-start', // ✅ 위쪽에 붙게
+                    marginRight: '40px',
+                    alignSelf: 'flex-start',
                 }}
             >
                 About her
