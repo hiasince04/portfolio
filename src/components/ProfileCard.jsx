@@ -17,12 +17,9 @@ function ProfileCard() {
                 justifyContent: 'flex-start',
             }}
         >
-            {/* 1. 이름 */}
             <h1 style={{ fontFamily: 'Arial', fontWeight: 'bold', marginBottom: '30px' }}>Kwon Juyeon</h1>
 
-            {/* 2. 학교 정보 + 이미지 묶기 */}
             <div style={{ display: 'flex', flexGrow: 1 }}>
-                {/* 왼쪽: 학교 정보 */}
                 <div style={{ flex: 2 }}>
                     <p>
                         <em>Hankuk University of Foreign Studies</em>
@@ -36,7 +33,6 @@ function ProfileCard() {
                     </p>
                 </div>
 
-                {/* 오른쪽: 증명사진 */}
                 <div
                     style={{
                         flex: 1,
@@ -60,7 +56,6 @@ function ProfileCard() {
                 </div>
             </div>
 
-            {/* 3. Contact 정보 */}
             <div style={{ marginTop: '30px' }}>
                 <h2>Contact</h2>
                 <p>📞 010-6397-7358</p>

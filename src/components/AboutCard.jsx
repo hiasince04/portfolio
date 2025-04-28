@@ -17,7 +17,6 @@ function AboutCard() {
                 display: 'flex',
             }}
         >
-            {/* 왼쪽 하단에 붙는 세로선 */}
             <div
                 style={{
                     width: '2px',
@@ -29,7 +28,6 @@ function AboutCard() {
                 }}
             ></div>
 
-            {/* About her 세로 글자 */}
             <div
                 style={{
                     writingMode: 'vertical-rl',
@@ -42,9 +40,7 @@ function AboutCard() {
                 About her
             </div>
 
-            {/* 오른쪽 전체 내용 */}
             <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                {/* Be honest in love + 특성 리스트 */}
                 <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '40px' }}>
                     <div
                         style={{
@@ -64,12 +60,10 @@ function AboutCard() {
                     </div>
                 </div>
 
-                {/* Learning 제목 */}
                 <div style={{ fontStyle: 'normal', fontSize: '20px', fontWeight: 'bold', marginBottom: '10px' }}>
                     Learning
                 </div>
 
-                {/* Learning 리스트 */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', maxWidth: '400px' }}>
                     {['Notion', 'Python', 'React.js', 'HTML5', 'JavaScript', 'CSS3', 'styled components'].map(
                         (tool) => (
