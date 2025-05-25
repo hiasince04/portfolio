@@ -17,7 +17,9 @@ function ProfileCard() {
                 justifyContent: 'flex-start',
             }}
         >
-            <h1 style={{ fontFamily: 'Arial', fontWeight: 'bold', marginBottom: '30px' }}>Kwon Juyeon</h1>
+            <h1 style={{ fontFamily: "'DM Serif Display', serif", fontWeight: 'bold', marginBottom: '30px' }}>
+                Kwon Juyeon
+            </h1>
 
             <div style={{ display: 'flex', flexGrow: 1 }}>
                 <div style={{ flex: 2 }}>

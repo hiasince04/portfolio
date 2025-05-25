@@ -1,31 +1,27 @@
-import React from 'react';
-import ProfileCard from './components/ProfileCard';
-import AboutCard from './components/AboutCard';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Navbar from './components/Navbar';
+import MainPage from './pages/MainPage';
+import WritePage from './pages/WritePage';
+import ListPage from './pages/ListPage';
 
 function App() {
+    const [posts, setPosts] = useState([]);
+
+    const addPost = (text) => {
+        setPosts([...posts, text]);
+    };
+
     return (
-        <div
-            style={{
-                backgroundColor: '#f9f9f9',
-                minHeight: '100vh',
-                padding: '30px',
-                fontFamily: 'Arial, sans-serif',
-            }}
-        >
-            <h1 style={{ marginBottom: '10px' }}>Profile.</h1>
-
-            <hr style={{ border: '1px solid black', marginBottom: '30px' }} />
-
-            <div
-                style={{
-                    display: 'flex',
-                    gap: '20px',
-                }}
-            >
-                <ProfileCard />
-                <AboutCard />
-            </div>
-        </div>
+        <BrowserRouter>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/write" element={<WritePage onSave={addPost} />} />
+                <Route path="/list" element={<ListPage posts={posts} />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
