@@ -20,8 +20,9 @@ function Navbar() {
                 display: 'flex',
                 justifyContent: 'flex-end',
                 gap: '12px',
-                padding: '12px 40px',
+                padding: '6px 20px',
                 borderBottom: '1px solid #ccc',
+                backgroundColor: '#CCDAE0',
             }}
         >
             <Link to="/" style={navButtonStyle}>
