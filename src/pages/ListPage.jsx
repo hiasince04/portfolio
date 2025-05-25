@@ -1,13 +1,33 @@
-function ListPage({ posts }) {
+function ListPage({ posts, onDelete }) {
     return (
-        <div>
-            <h2>글 목록</h2>
+        <div style={{ padding: '20px', fontFamily: "'DM Serif Display', serif" }}>
+            <h2>Lists</h2>
             {posts.length === 0 ? (
-                <p>아직 작성된 글이 없습니다.</p>
+                <p>There's nothing here!</p>
             ) : (
-                <ul>
+                <ul style={{ listStyle: 'none', padding: 0 }}>
                     {posts.map((post, index) => (
-                        <li key={index}>{post}</li>
+                        <li
+                            key={index}
+                            style={{ marginBottom: '12px', borderBottom: '1px solid #ddd', paddingBottom: '10px' }}
+                        >
+                            {post}
+                            <button
+                                onClick={() => onDelete(index)}
+                                style={{
+                                    marginLeft: '10px',
+                                    padding: '4px 10px',
+                                    fontSize: '12px',
+                                    backgroundColor: '#ff4d4f',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer',
+                                }}
+                            >
+                                Delete
+                            </button>
+                        </li>
                     ))}
                 </ul>
             )}

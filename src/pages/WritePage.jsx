@@ -11,17 +11,27 @@ function WritePage({ onSave }) {
     };
 
     return (
-        <div>
-            <h2>글쓰기</h2>
+        <div style={{ paddingLeft: '30px', paddingTop: '20px' }}>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif" }}>MEMO</h2>
             <textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                rows="10"
+                rows="20"
                 cols="50"
-                placeholder="여기에 글을 작성하세요"
+                placeholder="Write Something!"
+                style={{
+                    display: 'block',
+                    fontFamily: "'DM Serif Display', serif",
+                    marginBottom: '20px',
+                    padding: '10px',
+                    fontSize: '14px',
+                    borderRadius: '6px',
+                    border: '1px solid #ccc',
+                }}
             />
-            <br />
-            <button onClick={handleSave}>저장</button>
+            <button onClick={handleSave} style={{ fontFamily: "'DM Serif Display', serif" }}>
+                Save
+            </button>
         </div>
     );
 }

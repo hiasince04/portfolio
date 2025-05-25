@@ -13,13 +13,18 @@ function App() {
         setPosts([...posts, text]);
     };
 
+    const deletePost = (index) => {
+        const updated = posts.filter((_, i) => i !== index);
+        setPosts(updated);
+    };
+
     return (
         <BrowserRouter>
             <Navbar />
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/write" element={<WritePage onSave={addPost} />} />
-                <Route path="/list" element={<ListPage posts={posts} />} />
+                <Route path="/list" element={<ListPage posts={posts} onDelete={deletePost} />} />
             </Routes>
         </BrowserRouter>
     );
