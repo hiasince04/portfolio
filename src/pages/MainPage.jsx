@@ -1,12 +1,29 @@
-import AboutCard from '../components/AboutCard';
+// src/pages/MainPage.jsx
+import React from 'react';
 import ProfileCard from '../components/ProfileCard';
+import AboutCard from '../components/AboutCard';
 
 function MainPage() {
     return (
-        <div style={{ padding: '20px', fontFamily: "'DM Serif Display', serif", color: '#578CA9' }}>
-            <h1>JUYEONINE BLOG🍓</h1>
-            <div style={{ display: 'flex', gap: '20px' }}>
+        <div style={{ backgroundColor: '#f2f2f2', minHeight: '100vh' }}>
+            {/* 상단 고정 네비게이션 */}
+
+            {/* 메인 내용 */}
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                    padding: '50px',
+                    gap: '30px',
+                    fontFamily: "'Noto Sans KR', sans-serif",
+                    boxSizing: 'border-box',
+                }}
+            >
+                {/* 왼쪽: 프로필 */}
                 <ProfileCard />
+
+                {/* 오른쪽: 자기소개 + 기술스택 */}
                 <AboutCard />
             </div>
         </div>
