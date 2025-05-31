@@ -5,38 +5,26 @@ function MyFieldsPage() {
     return (
         <div
             style={{
-                backgroundColor: '#f8f8f8',
-                height: '100vh', // ✅ 정확히 한 화면 높이
+                backgroundColor: '#fefefe',
+                minHeight: '100vh',
                 display: 'flex',
-                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '40px',
+                boxSizing: 'border-box',
             }}
         >
-            {/* 상단바는 App.jsx에서 자동 포함됨 */}
-
-            <div
+            <img
+                src={sheworks}
+                alt="sheworks"
                 style={{
-                    flexGrow: 1,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    paddingTop: '10px', // 조금만 여유
-                    boxSizing: 'border-box',
+                    maxWidth: '100%',
+                    maxHeight: '90vh',
+                    objectFit: 'contain',
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
                 }}
-            >
-                <img
-                    src={sheworks}
-                    alt="sheworks"
-                    style={{
-                        maxHeight: '80vh', // ✅ 한 화면 내 제한
-                        maxWidth: '90%',
-                        height: 'auto',
-                        width: 'auto',
-                        objectFit: 'contain',
-                        borderRadius: '12px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                    }}
-                />
-            </div>
+            />
         </div>
     );
 }

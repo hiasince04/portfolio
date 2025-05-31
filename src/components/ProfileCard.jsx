@@ -1,3 +1,4 @@
+// src/components/ProfileCard.jsx
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -72,7 +73,7 @@ function ProfileCard() {
                                 }}
                             >
                                 <a
-                                    href="/my-fields"
+                                    href="/myfields"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     style={{ textDecoration: 'none', color: 'inherit' }}
