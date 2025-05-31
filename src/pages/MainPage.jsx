@@ -5,7 +5,13 @@ import AboutCard from '../components/AboutCard';
 
 function MainPage() {
     return (
-        <div style={{ backgroundColor: '#f2f2f2', minHeight: '100vh' }}>
+        <div
+            style={{
+                backgroundColor: '#f2f2f2',
+                minHeight: '100vh',
+                overflow: 'visible', // ✅ 팝업이 잘리지 않도록
+            }}
+        >
             {/* 상단 고정 네비게이션 */}
 
             {/* 메인 내용 */}
