@@ -8,17 +8,18 @@ import ListPage from './pages/ListPage';
 import MyFieldsPage from './pages/MyFieldsPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import { v4 as uuidv4 } from 'uuid';
+import PostDetailPage from './pages/PostDetailPage';
 
 function App() {
     const [posts, setPosts] = useState([]);
 
-    const addPost = (text) => {
-        setPosts([...posts, text]);
+    const addPost = (post) => {
+        setPosts([...posts, post]);
     };
 
-    const deletePost = (index) => {
-        const updated = posts.filter((_, i) => i !== index);
-        setPosts(updated);
+    const deletePost = (id) => {
+        setPosts(posts.filter((p) => p.id !== id));
     };
 
     return (
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/myfields" element={<MyFieldsPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+                <Route path="/post/:id" element={<PostDetailPage posts={posts} />} />
             </Routes>
         </BrowserRouter>
     );
