@@ -1,7 +1,7 @@
-// src/pages/MainPage.jsx
 import React from 'react';
 import ProfileCard from '../components/ProfileCard';
 import AboutCard from '../components/AboutCard';
+import LogoutButton from '../components/LogoutButton';
 
 function MainPage() {
     return (
@@ -32,6 +32,9 @@ function MainPage() {
                 {/* 오른쪽: 자기소개 + 기술스택 */}
                 <AboutCard />
             </div>
+
+            {/* 하단 로그아웃 버튼 */}
+            <LogoutButton />
         </div>
     );
 }

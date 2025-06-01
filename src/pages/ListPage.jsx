@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import LogoutButton from '../components/LogoutButton';
 
 function ListPage({ posts, onDelete }) {
     return (
@@ -18,6 +19,8 @@ function ListPage({ posts, onDelete }) {
                     ))}
                 </ul>
             )}
+
+            <LogoutButton />
         </div>
     );
 }

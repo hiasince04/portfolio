@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import LogoutButton from '../components/LogoutButton';
 
 function WritePage({ onSave }) {
     const [title, setTitle] = useState('');
@@ -27,6 +28,9 @@ function WritePage({ onSave }) {
             <textarea value={content} onChange={(e) => setContent(e.target.value)} placeholder="내용" />
             <br />
             <button onClick={handleSave}>저장</button>
+            <button onClick={handleSave}>저장</button>
+
+            <LogoutButton />
         </div>
     );
 }
