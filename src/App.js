@@ -7,6 +7,7 @@ import WritePage from './pages/WritePage';
 import ListPage from './pages/ListPage';
 import MyFieldsPage from './pages/MyFieldsPage';
 import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 function App() {
     const [posts, setPosts] = useState([]);
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/list" element={<ListPage posts={posts} onDelete={deletePost} />} />
                 <Route path="/myfields" element={<MyFieldsPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
             </Routes>
         </BrowserRouter>
     );

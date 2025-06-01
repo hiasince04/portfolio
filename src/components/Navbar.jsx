@@ -34,11 +34,12 @@ function Navbar() {
             <Link to="/list" style={navButtonStyle}>
                 LISTS
             </Link>
-            <Link to="/myfields" style={navButtonStyle}>
-                MY FIELD
-            </Link>
+
             <Link to="/login" style={navButtonStyle}>
                 LOGIN
+            </Link>
+            <Link to="/signup" style={navButtonStyle}>
+                SIGNUP
             </Link>
         </nav>
     );
