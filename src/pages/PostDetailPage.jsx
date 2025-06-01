@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPostDetailAPI } from '../api/getPostDetailAPI';
+import { deletePostAPI } from '../api/deletePostAPI';
 import LogoutButton from '../components/LogoutButton';
 
 function PostDetailPage() {
@@ -25,6 +26,25 @@ function PostDetailPage() {
         fetchPost();
     }, [id]);
 
+    const handleDelete = async () => {
+        if (!window.confirm('정말 삭제하시겠습니까?')) return;
+        try {
+            await deletePostAPI(id);
+            alert('삭제 완료!');
+            navigate('/list');
+        } catch (err) {
+            if (err.response?.status === 403) {
+                alert('삭제 권한이 없습니다.');
+            } else {
+                alert('삭제 실패: 서버 오류');
+            }
+        }
+    };
+
+    const handleEdit = () => {
+        navigate(`/post/${id}/edit`);
+    };
+
     if (error) return <div style={{ padding: '20px', color: 'red' }}>{error}</div>;
     if (!post) return <div style={{ padding: '20px' }}>불러오는 중...</div>;
 
@@ -32,7 +52,38 @@ function PostDetailPage() {
         <div style={{ padding: '40px' }}>
             <h2>{post.title}</h2>
             <p style={{ whiteSpace: 'pre-line' }}>{post.body}</p>
-            <button onClick={() => navigate(-1)}>← 목록으로</button>
+
+            <div style={{ marginTop: '20px' }}>
+                <button
+                    onClick={handleDelete}
+                    style={{
+                        marginRight: '10px',
+                        backgroundColor: '#ff4d4f',
+                        color: 'white',
+                        border: 'none',
+                        padding: '6px 12px',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                    }}
+                >
+                    삭제
+                </button>
+                <button
+                    onClick={handleEdit}
+                    style={{
+                        backgroundColor: '#5f9ea0',
+                        color: 'white',
+                        border: 'none',
+                        padding: '6px 12px',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                    }}
+                >
+                    수정
+                </button>
+                <button onClick={() => navigate(`/post/${post.id}/edit`)}>수정</button>
+            </div>
+
             <LogoutButton />
         </div>
     );

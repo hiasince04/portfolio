@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
@@ -8,31 +8,23 @@ import ListPage from './pages/ListPage';
 import MyFieldsPage from './pages/MyFieldsPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-import { v4 as uuidv4 } from 'uuid';
 import PostDetailPage from './pages/PostDetailPage';
+//import PostEditPage from './pages/PostEditPage';
+import PostEditPage from './pages/PostEditPage';
 
 function App() {
-    const [posts, setPosts] = useState([]);
-
-    const addPost = (post) => {
-        setPosts([...posts, post]);
-    };
-
-    const deletePost = (id) => {
-        setPosts(posts.filter((p) => p.id !== id));
-    };
-
     return (
         <BrowserRouter>
             <Navbar />
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/write" element={<WritePage onSave={addPost} />} />
-                <Route path="/list" element={<ListPage posts={posts} onDelete={deletePost} />} />
+                <Route path="/write" element={<WritePage />} />
+                <Route path="/list" element={<ListPage />} />
                 <Route path="/myfields" element={<MyFieldsPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
-                <Route path="/post/:id" element={<PostDetailPage posts={posts} />} />
+                <Route path="/post/:id" element={<PostDetailPage />} />
+                <Route path="/post/:id/edit" element={<PostEditPage />} />
             </Routes>
         </BrowserRouter>
     );

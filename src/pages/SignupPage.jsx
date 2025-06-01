@@ -30,10 +30,11 @@ function SignupPage() {
             localStorage.setItem('refreshToken', res.refresh);
             navigate('/login');
         } catch (err) {
+            console.log('회원가입 에러:', err.response?.data); // 🔍 콘솔에서 확인 가능
             if (err.response?.data) {
                 setErrors(err.response.data);
             } else {
-                alert('회원가입 중 오류가 발생했습니다.');
+                alert('회원가입 중 알 수 없는 오류가 발생했습니다.');
             }
         }
     };
