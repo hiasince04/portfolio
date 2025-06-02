@@ -9,7 +9,7 @@ function MainPage() {
             style={{
                 backgroundColor: '#f2f2f2',
                 minHeight: '100vh',
-                overflow: 'visible', // ✅ 팝업이 잘리지 않도록
+                overflow: 'visible', //팝업이 잘리지 않도록
             }}
         >
             {/* 상단 고정 네비게이션 */}
@@ -26,14 +26,11 @@ function MainPage() {
                     boxSizing: 'border-box',
                 }}
             >
-                {/* 왼쪽: 프로필 */}
                 <ProfileCard />
 
-                {/* 오른쪽: 자기소개 + 기술스택 */}
                 <AboutCard />
             </div>
 
-            {/* 하단 로그아웃 버튼 */}
             <LogoutButton />
         </div>
     );

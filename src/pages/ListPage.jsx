@@ -1,58 +1,69 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import LogoutButton from '../components/LogoutButton';
-import { getAllPostsAPI } from '../api/getAllPostsAPI';
-import { deletePostAPI } from '../api/deletePostAPI';
+import customAxios from '../api/customAxios';
 
 function ListPage() {
     const [posts, setPosts] = useState([]);
 
-    const fetchPosts = async () => {
-        try {
-            const data = await getAllPostsAPI();
-            setPosts(data);
-        } catch {
-            alert('게시글을 불러오지 못했습니다.');
-        }
-    };
-
+    // ✅ 서버에서 전체 게시글 불러오기
     useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const res = await customAxios.get('/blog/');
+                setPosts(res.data);
+            } catch (err) {
+                console.error('글 불러오기 실패:', err);
+            }
+        };
         fetchPosts();
     }, []);
 
+    // ✅ 삭제 함수
     const handleDelete = async (id) => {
-        if (!window.confirm('정말 삭제하시겠습니까?')) return;
-
         try {
-            await deletePostAPI(id);
-            setPosts((prev) => prev.filter((post) => post.id !== id));
+            await customAxios.delete(`/blog/${id}/`);
+            alert('삭제 완료');
+            setPosts((prev) => prev.filter((post) => post.id !== id)); // 로컬에서도 제거
         } catch (err) {
-            if (err.response?.status === 403) {
-                alert('삭제 권한이 없습니다.');
-            } else {
-                alert('삭제 실패: 서버 오류');
-            }
+            alert('삭제 실패: ' + (err.response?.data?.detail || '에러'));
         }
     };
 
     return (
-        <div style={{ padding: '20px' }}>
-            <h2>게시글 목록</h2>
-            {posts.length === 0 ? (
-                <p>글이 없습니다.</p>
-            ) : (
-                <ul style={{ listStyle: 'none', padding: 0 }}>
-                    {posts.map((post) => (
-                        <li key={post.id}>
-                            <Link to={`/post/${post.id}`}>{post.title}</Link>
-                            <button onClick={() => handleDelete(post.id)} style={{ marginLeft: '10px' }}>
-                                삭제
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            )}
-            <LogoutButton />
+        <div style={{ padding: '40px', fontFamily: "'DM Serif Display', serif" }}>
+            <h2 style={{ marginBottom: '20px' }}>게시글 목록</h2>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+                {posts.map((post) => (
+                    <li key={post.id} style={{ marginBottom: '12px' }}>
+                        <Link
+                            to={`/post/${post.id}`}
+                            style={{
+                                color: 'black',
+                                textDecoration: 'none',
+                                fontSize: '18px',
+                            }}
+                        >
+                            {post.title}
+                        </Link>
+                        <button
+                            onClick={() => handleDelete(post.id)}
+                            style={{
+                                marginLeft: '12px',
+                                padding: '4px 8px',
+                                fontSize: '14px',
+                                borderRadius: '6px',
+                                fontFamily: "'DM Serif Display', serif",
+                                backgroundColor: '#ff4d4f',
+                                color: 'white',
+                                border: 'none',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            Delete
+                        </button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

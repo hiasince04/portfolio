@@ -1,4 +1,3 @@
-// src/api/getPostDetailAPI.js
 import axios from './customAxios';
 
 export const getPostDetailAPI = async (id) => {

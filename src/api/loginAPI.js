@@ -1,4 +1,3 @@
-// src/api/loginAPI.js
 import axios from './customAxios';
 
 export const loginAPI = async (data) => {

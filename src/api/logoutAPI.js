@@ -1,4 +1,3 @@
-// src/api/logoutAPI.js
 import axios from './customAxios';
 
 export const logoutAPI = async () => {

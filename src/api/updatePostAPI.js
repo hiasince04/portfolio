@@ -1,4 +1,3 @@
-// src/api/updatePostAPI.js
 import axios from './customAxios';
 
 export const updatePostAPI = async (id, postData) => {

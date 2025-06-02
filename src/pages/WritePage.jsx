@@ -1,43 +1,92 @@
 import { useState } from 'react';
+import customAxios from '../api/customAxios';
 import { useNavigate } from 'react-router-dom';
-import { createPostAPI } from '../api/createPostAPI';
-import LogoutButton from '../components/LogoutButton';
 
 function WritePage() {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = async () => {
-        if (title.trim() === '' || body.trim() === '') return alert('제목과 내용을 모두 입력하세요!');
+    const handleSave = async () => {
+        if (title.trim() === '' || body.trim() === '') return;
         try {
-            await createPostAPI({ title, body });
-            alert('게시글이 등록되었습니다!');
+            await customAxios.post('/blog/', { title, body });
+            alert('글이 작성되었습니다!');
             navigate('/list');
         } catch (err) {
-            alert('글 작성 실패: ' + (err.response?.data?.detail || '서버 오류'));
+            alert('작성 실패: ' + (err.response?.data?.detail || '에러 발생'));
         }
     };
 
     return (
-        <div style={{ padding: '20px' }}>
-            <h2>글 작성</h2>
-            <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="제목"
-                style={{ display: 'block', marginBottom: '10px', width: '400px' }}
-            />
-            <textarea
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-                placeholder="내용"
-                rows="10"
-                cols="50"
-                style={{ display: 'block', marginBottom: '10px' }}
-            />
-            <button onClick={handleSubmit}>작성 완료</button>
-            <LogoutButton />
+        <div
+            style={{
+                minHeight: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontFamily: "'DM Serif Display', serif",
+                backgroundColor: '#f9f9f9',
+            }}
+        >
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    backgroundColor: 'white',
+                    padding: '40px',
+                    borderRadius: '10px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                }}
+            >
+                <h2 style={{ marginBottom: '20px' }}>MEMO</h2>
+
+                <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="제목"
+                    style={{
+                        marginBottom: '12px',
+                        padding: '10px',
+                        width: '300px',
+                        border: '2px solid #888',
+                        borderRadius: '5px',
+                        fontFamily: "'DM Serif Display', serif",
+                        fontSize: '14px',
+                    }}
+                />
+
+                <textarea
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}
+                    placeholder="내용"
+                    rows="10"
+                    style={{
+                        marginBottom: '16px',
+                        padding: '10px',
+                        width: '300px',
+                        border: '2px solid #888',
+                        borderRadius: '5px',
+                        fontFamily: "'DM Serif Display', serif",
+                        fontSize: '14px',
+                    }}
+                />
+
+                <button
+                    onClick={handleSave}
+                    style={{
+                        padding: '8px 16px',
+                        borderRadius: '6px',
+                        border: '1px solid #ccc',
+                        backgroundColor: '#f0f0f0',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                        fontFamily: "'DM Serif Display', serif",
+                    }}
+                >
+                    Save!
+                </button>
+            </div>
         </div>
     );
 }

@@ -1,4 +1,3 @@
-// src/pages/SignupPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signupAPI } from '../api/signupAPI';
@@ -30,7 +29,7 @@ function SignupPage() {
             localStorage.setItem('refreshToken', res.refresh);
             navigate('/login');
         } catch (err) {
-            console.log('회원가입 에러:', err.response?.data); // 🔍 콘솔에서 확인 가능
+            console.log('회원가입 에러:', err.response?.data);
             if (err.response?.data) {
                 setErrors(err.response.data);
             } else {
@@ -43,12 +42,39 @@ function SignupPage() {
         errors[field] ? <p style={{ color: 'red', fontSize: '12px' }}>{errors[field][0]}</p> : null;
 
     return (
-        <div style={{ padding: '40px' }}>
-            <h2>회원가입</h2>
-            <form onSubmit={handleSubmit}>
-                <input name="username" value={form.username} onChange={handleChange} placeholder="아이디" required />
+        <div
+            style={{
+                minHeight: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: '#f9f9f9',
+                fontFamily: "'DM Serif Display', serif",
+            }}
+        >
+            <form
+                onSubmit={handleSubmit}
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    backgroundColor: 'white',
+                    padding: '40px',
+                    borderRadius: '10px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                }}
+            >
+                <h2 style={{ marginBottom: '20px' }}>Sign Up</h2>
+
+                <input
+                    name="username"
+                    value={form.username}
+                    onChange={handleChange}
+                    placeholder="아이디"
+                    required
+                    style={inputStyle}
+                />
                 {renderError('username')}
-                <br />
 
                 <input
                     name="password1"
@@ -57,9 +83,9 @@ function SignupPage() {
                     onChange={handleChange}
                     placeholder="비밀번호"
                     required
+                    style={inputStyle}
                 />
                 {renderError('password1')}
-                <br />
 
                 <input
                     name="password2"
@@ -68,21 +94,59 @@ function SignupPage() {
                     onChange={handleChange}
                     placeholder="비밀번호 확인"
                     required
+                    style={inputStyle}
                 />
                 {renderError('non_field_errors')}
-                <br />
 
-                <input name="nickname" value={form.nickname} onChange={handleChange} placeholder="닉네임" />
-                <br />
-                <input name="university" value={form.university} onChange={handleChange} placeholder="소속 대학교" />
-                <br />
-                <input name="location" value={form.location} onChange={handleChange} placeholder="지역" />
-                <br />
+                <input
+                    name="nickname"
+                    value={form.nickname}
+                    onChange={handleChange}
+                    placeholder="닉네임"
+                    style={inputStyle}
+                />
+                <input
+                    name="university"
+                    value={form.university}
+                    onChange={handleChange}
+                    placeholder="소속 대학교"
+                    style={inputStyle}
+                />
+                <input
+                    name="location"
+                    value={form.location}
+                    onChange={handleChange}
+                    placeholder="지역"
+                    style={inputStyle}
+                />
 
-                <button type="submit">가입하기</button>
+                <button
+                    type="submit"
+                    style={{
+                        marginTop: '20px',
+                        padding: '6px 12px',
+                        borderRadius: '6px',
+                        border: '1px solid #ccc',
+                        backgroundColor: '#f0f0f0',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                    }}
+                >
+                    가입하기
+                </button>
             </form>
         </div>
     );
 }
+
+const inputStyle = {
+    marginBottom: '10px',
+    padding: '8px',
+    width: '240px',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+    fontSize: '14px',
+    fontFamily: "'DM Serif Display', serif",
+};
 
 export default SignupPage;

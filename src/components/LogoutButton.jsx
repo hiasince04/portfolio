@@ -1,40 +1,41 @@
-// src/components/LogoutButton.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logoutAPI } from '../api/logoutAPI';
+import customAxios from '../api/customAxios';
 
 function LogoutButton() {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
         try {
-            await logoutAPI();
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
-            alert('로그아웃 되었습니다.');
-            navigate('/login');
+            await customAxios.post('/dj/logout/');
         } catch (err) {
-            alert('로그아웃 실패: ' + (err.response?.data?.detail || '서버 오류'));
+            console.error('서버 로그아웃 실패:', err.response?.data);
         }
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        alert('로그아웃되었습니다');
+        navigate('/login');
     };
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
-            <button
-                onClick={handleLogout}
-                style={{
-                    fontSize: '12px',
-                    backgroundColor: '#eee',
-                    color: '#333',
-                    border: '1px solid #ccc',
-                    borderRadius: '4px',
-                    padding: '4px 10px',
-                    cursor: 'pointer',
-                }}
-            >
-                로그아웃
-            </button>
-        </div>
+        <button
+            onClick={handleLogout}
+            style={{
+                position: 'fixed',
+                bottom: '20px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                padding: '4px 10px',
+                backgroundColor: '#f0f0f0',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                fontSize: '11px',
+                cursor: 'pointer',
+                zIndex: 999,
+            }}
+        >
+            Logout
+        </button>
     );
 }
 

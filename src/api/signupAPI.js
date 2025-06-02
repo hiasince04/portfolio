@@ -1,7 +1,6 @@
-// src/api/signupAPI.js
-import axios from './customAxios';
+import axios from 'axios';
 
 export const signupAPI = async (data) => {
-    const response = await axios.post('/dj/registration/', data);
-    return response.data;
+    const res = await axios.post('https://hufs-meotsa-13th.store/dj/registration/', data);
+    return res.data;
 };

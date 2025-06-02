@@ -1,4 +1,3 @@
-// src/api/deletePostAPI.js
 import axios from './customAxios';
 
 export const deletePostAPI = async (id) => {
